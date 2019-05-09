@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 use think\Controller;
-use think\Request;
+use think\Request;  
 class Index4 extends Controller
 {
     public function hello()
@@ -17,6 +17,9 @@ class Index4 extends Controller
         echo "<br/>";
         echo request()->url(); // 为了简洁 方便可以使用 函数助手
         echo "<br/>";
+        echo "======================================================";
+        echo "<br/>";
+        
         /**请求变量信息**/
         print_r($request->param());
         echo "<br/>";
@@ -30,6 +33,7 @@ class Index4 extends Controller
         echo $request->param('en_name','jake','strtolower');
         echo "<br/>";
         /***指定获取参数**/  // http://www.tp5.com/admin/index4/hello.html?name=1111&en_name=LUXI
+        
         echo "============request=================<br/>";
         echo 'GET参数：';
         print_r($request->get()); echo "<br/>";
@@ -42,6 +46,8 @@ class Index4 extends Controller
         echo '上传文件信息：image:';
         print_r($request->file('image'));echo "<br/>";  
         /**相同的input 也一样 **/
+        
+        
         echo "============input=================<br/>";
         echo 'GET参数：';
         print_r(input('get.'));echo "<br/>";
@@ -54,6 +60,7 @@ class Index4 extends Controller
         echo '上传文件信息：image:';
         print_r(input('file.image'));echo "<br/>";       
         
+        
         echo "============request 其他参数=================<br/>";
         echo '请求方法：' . $request->method() . '<br/>';        
         echo '访问IP：' . $request->ip() . '<br/>';
@@ -65,6 +72,7 @@ class Index4 extends Controller
         echo '当前URL地址 不含QUERY_STRING' . $request->baseUrl() . '<br/>';
         echo 'URL地址中的pathinfo信息: ' . $request->pathinfo() . '<br/>';
         echo 'URL地址中的后缀信息 ' . $request->ext() . '<br/>';
+        
         echo "============request 当前模块/控制器/操作信息=================<br/>";
         echo '模块：'.$request->module(). '<br/>';
         echo '控制器：'.$request->controller(). '<br/>';
@@ -74,13 +82,14 @@ class Index4 extends Controller
     public function hello2()
     {              
        $data = ['name' => 'thinkphp', 'status' => '1'];
-       //return $data;
+       
+       // return $data;
       // return json($data);
-       //return json($data,201);
+      //return json($data,201);
        //return xml($data);
        //$this->assign('name','渲染 模板');
        //return $this->fetch('index/index2');
-       //return 'dbashjdghasdghasdg';
+        return 'dbashjdghasdghasdg';
     }  
     
     // 页面跳转

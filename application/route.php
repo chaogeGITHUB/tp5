@@ -23,6 +23,7 @@ return [
     'hello/[:name]' =>['index/index/hello',['method' => 'get', 'ext'=>'html']],
     //[:name]中的[]是可选项
     'today/:year/:month' =>['index/index/today',['method'=>'get'],['year'=>'\d{4}','month'=>'\d{2}']],
+    // \d表示数字
     
 
 ];

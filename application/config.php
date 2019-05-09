@@ -83,7 +83,7 @@ return [
     // 兼容PATH_INFO获取
     'pathinfo_fetch'         => ['ORIG_PATH_INFO', 'REDIRECT_PATH_INFO', 'REDIRECT_URL'],
     // pathinfo分隔符
-    'pathinfo_depr'          => '-',
+    'pathinfo_depr'          => '/',
     // URL伪静态后缀
     'url_html_suffix'        => 'html',
     // URL普通方式参数 用于自动生成
@@ -101,7 +101,7 @@ return [
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名
-    'url_convert'            => FALSE,
+    'url_convert'            => true,
     // 默认的访问控制器层
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
