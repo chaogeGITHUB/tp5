@@ -20,6 +20,8 @@ class Index extends Controller
     }
     
     public function sjk(){
+      //----第八、九:数据库基本操作，数据库事务、链式操作   
+      
         //插入记录
        // $result = Db::execute('insert into tp_admin (userid,username,password) values (7,"黄蓉",123123)');
         //dump($result);
@@ -47,7 +49,7 @@ class Index extends Controller
     //dump($result); 
     
         
-    //数据库切换查询
+    //*数据库切换查询
     //$result = Db::connect('tp51')->query('select `userid`,`username` from tp_admin where userid =4');
    // print_r($result);
     // $result = Db::connect('tp52')->query('select `userid`,`username`from  tp_admin where userid =2');
@@ -112,23 +114,127 @@ class Index extends Controller
          //     ->field('userid,username,password')
         //      ->order('userid','desc')
         //      ->limit(10)->select();
-   //   dump($li st);
+   //   dump($list);
         
         
         
     //事务支持 在Mysql数据库中请设置表类型为InnoDB
     //把需要执行的事务操作封装到闭包里面即可自动完成事务
      //一起同时执行成功就成功，失败就回滚
-      Db::transaction(function(){
-       Db::table('tp_admin')->delete(13);
-       Db::table('tp_admin')->insert(['userid'=>11,'username'=>'11号','password'=>123654]);
-     echo "事务执行失败";
-   });
-   
-    
-    
+      
+      // Db::transaction(function(){
+      //Db::table('tp_admin')->delete(13);
+      //Db::table('tp_admin')->insert(['userid'=>11,'username'=>'11号','password'=>123654]);
+      //echo "事务执行失败";
+   //});
+        
+       //手动控制事务的提交
+       //启动事务
+     // Db::startTrans();
+     // try{
+        //  Db::table('tp_admin')
+        //    ->delete(7);
+        //  Db::table('tp_admin')
+         //   ->insert(['userid'=>5,'username'=> '测试员','password ' => '888666']);
+          //提交事务
+        //  echo '提交事务成功';
+       //   Db::commit() 
+          
+        //把有可能出错的内容放在try中 
+    //  }catch(\Exception $e){
+          //回滚事务
+        //  echo '提交事务失败';
+       //   Db::rollback();
+          
+   //   }
         
     }
     
+    
+    
+    
+    
+    public function select(){
+     //----第十：查询语言（上）----//
+     
+     // $result = Db::name('admin')->where('userid',2)->find();   
+       
+    //可以写成>= <= <>  'in',[4,5,6,7,8]  'between',[5,8] 
+     //$result = Db::name('admin')->where('userid','between',[1,4])->select();
+     //dump($result);
+       
+        
+     //*查询某个字段是否为NULL
+    // $result = Db::name('admin')
+      //   ->where('username','张无忌')
+      //    ->select();
+     // dump($result);
+        
+        
+    //使用EXP条件表达式，表示后面是原生的SQL语句表达式
+    //$result = Db::name('admin')->where('userid','exp',"   > 1 and username='赵敏'")->select();
+    //dump($result);
+        
+        
+    //*使用多个字段查询
+    //$result = Db::name('admin')
+        //   ->where('userid','>=',1)
+        //   ->where('username','like','%小%')
+        //   ->select();
+  // dump($result);
+        
+        
+    //或者使用
+     // $result = Db::name('admin')
+       //   ->where([
+        //      'userid'  =>['>=',1],
+         //     'username' =>['like','%think%'],
+         //  ])->select();
+      
+     // dump($result);
+              
+    
+    //*使用OR或者AND混合条件查询
+      
+    // $result = Db::name('admin')
+           // ->where('username','like','%敏%')
+          //  ->where('userid',['in',[1,2,3]],['>=',1],'or')
+          //   ->limit(2)
+            // ->select();
+   //dump($result);
+     
+     
+     
+     //*批量查询
+    // $result = Db::name('admin')
+           //  ->where([
+            //     'userid' => [['in',[1,2,3]],['>=',1],'or'],
+            //     'username' =>['like','%think%'],
+          //    ])
+          //   ->limit(10)
+          //  ->select();
+   // dump($result); 
+       
+    //快捷查询
+       // $result = Db::name('admin')
+         //       ->where('userid&password','>',0) // &是 and 的意思
+           //     ->limit(10)
+             //   ->select();
+        //dump($result);
+        
+        
+       // $result = Db::name('admin')
+         //       ->where('userid|password','>',2)  |是 or 的意思
+           //     ->limit(10)
+             //   ->select();
+        //dump($result);
+        
+        
+          
+       
+        
+        
+        
+    }
      
 }
