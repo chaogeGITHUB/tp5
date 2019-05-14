@@ -209,7 +209,7 @@ class Index extends Controller
     // $result = Db::name('admin')
            //  ->where([
             //     'userid' => [['in',[1,2,3]],['>=',1],'or'],
-            //     'username' =>['like','%think%'],
+            //     'username' =>['like','%think%'], 
           //    ])
           //   ->limit(10)
           //  ->select();
@@ -230,11 +230,134 @@ class Index extends Controller
         //dump($result);
         
         
-          
+        
+     //视图查询(未常用)
+      
+     //$result = Db::view('admin','userid,username,status')
+          //   ->view('users',['nickname'=>'user_name','mobile','email'],'users.user_userid = admin.userid')
+           //  ->where('admin.status',1)
+           //  ->order('userid desc')
+           //  ->select();
+     //print_r($result);
+        
+     //使用Query对象
+        //$query = new \think\db\Query;
+       // $query->name('admin')->where('username','like','%think%')
+       //         ->where('userid','>=','1')
+        //        ->limit(10);
+      // $result = Db::select($query);
+     //  dump($result);
+        
+     
+        //-------第十一：查询语言(下)----------//
+   
        
+        //获取某行某列某个值
+        //$value = Db::name('admin')
+             //   ->where('userid',5)
+              //  ->value('username');
+         //print_r($value);
+        
+        
+        //获取某列
+        //$value = Db::name('admin')
+         //      ->where('status',1)
+         //      ->column('username');  column表示的是列
+        //dump($value);
+        
+       
+        //获取ID键名 name位值的键值对
+        //$value = Db::name('admin')
+               // ->where('status',1)
+               // ->column('username','userid');
+      //  dump($value);
+        
+        
+        //获取id键名的数据集键值对（整条ID的全部数据）
+       //$value =Db::name('admin')
+           //     ->where('status',1)
+            //    ->column('*','userid');
+       // dump($value);
+        
+      
+     //聚合查询 count max min avg sum
+     
+    //统计data表的数据(一共多少条)
+     //   $value = Db::name('admin')->where('status',1)->count();
+     //   echo $count;
+        
+        
+    //统计data表的最大ID
+        //$value = Db::name('admin')->where('status',1)->max('userid');
+       // echo $value; 
+        
+    
+    //*建议字符串 简单查询*
+      // $result = Db::name('admin')
+          //     ->where("userid>=:userid and username like :username",['userid'=> 2,'username'=>"%敏%"])
+           //    ->select();
+      // dump($result);
+        
+    
+    // ----------日期查询 建议 日期类型 使用int----------------//
+   
+   ////查询时间小于2016-1-1的数据
+   // $result = Db::name('admin')
+        //  ->whereTime('reg_time', '<','2016-01-01')
+       //   ->select();
+  //  dump($result);
+        
+        
+     //查询本周
+    // $result = Db::name('admin')
+       //    ->whereTime('reg_time','>', 'this week')
+        //  ->select();
+  //dump($result);
+        
+        
+      //查询最近两天添加的数据
+        //$result = Db::name('admin')
+          //      ->whereTime('reg_time','>', '-2 days')
+            //    ->select();
+        //dump($result);
+        
+        
+    //查询创建时间在2015-01-01到2016-12-31的数据
+       // $result = Db::name('admin')
+        //        ->whereTime('reg_time','between',['2015-01-01','2016-12-31'] )
+        //        ->select();
+       // dump($result);
+        
+        
+     //获取今天的数据 昨天 yesterday 本周 week 上周last week
+        
+       //$result = Db::name('admin')
+             //  ->whereTime('reg_time', 'today')
+              // ->select();
+      // dump($result);
         
         
         
+        //*分块查询*(减少服务器的内存负担，假设100万条数据，每次查询可以分10/100/1000条)
+        
+      //Db::name('admin')
+       //       ->where('status','>',0)
+         //     ->chunk(2, function($list){
+                  //处理2条记录
+         //   dump($list);    
+           //   });
+        
+        
+      //改进后
+    
+      $p = 0;
+      do{
+         $result = Db::name('admin')->limit($p,2)->select(); //(0,2)(2,4)(4,6)(6,8)......
+         $p +=2;
+         dump($result);
+        //逻辑处理
+      }while (count($result)>0);
+           
     }
      
 }
