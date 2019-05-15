@@ -350,14 +350,18 @@ class Index extends Controller
         
       //改进后
     
-      $p = 0;
-      do{
-         $result = Db::name('admin')->limit($p,2)->select(); //(0,2)(2,4)(4,6)(6,8)......
-         $p +=2;
-         dump($result);
+      //$p = 0;
+      //do{
+        // $result = Db::name('admin')->limit($p,2)->select(); //(0,2)(2,4)(4,6)(6,8)......
+         //$p +=2;
+         //dump($result);
         //逻辑处理
-      }while (count($result)>0);
+      //}while (count($result)>0);
            
     }
+    
+    
+    //第十二 模型与关联(上)
+      
      
 }

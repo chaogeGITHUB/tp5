@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use think\Db;
+use app\index\model\Admin;
 use think\Url;
 
 
@@ -39,21 +41,100 @@ class Index extends Controller
          echo "</br>";
          echo url('today/2017/07'); //路由规则
          echo "</br>";
-
-         
-         
-         
-         
-         
-         
-         
-         
-         
-     }
+         }
      
      public function url2()
              {
          print_r($this->request->param());
          
      }
+     
+      
+     // 模型和关联
+     
+     public function admin(){
+         
+         //$a = Admin::get(2);
+         //dump($a);
+         
+      
+       //插入操作
+         //$admin = new Admin;
+         //$admin->email = '375707@qq.com';
+         //$admin->mobile = '1008611';
+         //$admin->save();
+     //换种方法插入操作
+         //$admin['username']='听雪楼';
+        // $admin['email'] = '10086@163.com';
+        // $admin['mobile'] = '1008611';
+       //  if($result = Admin::create($admin))  //生成sql插入语句插入数据
+               //  echo "用户id::{$result->userid} 邮件：{$result->email} 手机：{$result->mobile}";
+         
+     
+    //批量新增
+         //$admin = new Admin;
+      //   $adminlist = [
+         //    ['username' => '敏敏特穆尔','mobile' => '1008616','email' =>'375707@163.com'],
+         //    ['username' => '敏敏特','mobile' => '10086164','email' =>'375707@163.com'],
+        //  ];
+       //  if($admin->saveAll($adminlist)){ //生成SQL插入语句插入数组$adminlist的内容
+       //      echo "用户批量添加成功";
+       //  }
+         
+         
+         
+      //查询数据
+       //$admin = Admin::get(17) ;  
+      // echo $admin->username;
+       //echo "<br/>";
+      // echo $admin->email;
+    
+    //因为实现了\ArrayAccess接口，可以将对象像数组一样访问
+      // $admin = Admin::get(17);
+       //echo $admin['username'];
+      // echo "<br/>";
+     //  echo $admin->mobile;
+     //  echo "<br/>";
+      // echo $admin['email'];
+       
+    //根据某个条件查询数据getByXxxx()方法
+        // $admin = Admin::getByUserid('17');
+    //     echo $admin['username'];
+      //   echo "<br/>";
+      //   echo $admin['password'];
+         
+      
+     //如果不是根据主键查询,可以传入数组作为查询条件
+    //$admin =Admin::get(['mobile'=>'1008616','email'=>'375707@163.com']);   
+    //$admin =Admin::where('mobile','1008616')->find();
+   // $admin =Admin::where(['mobile'=>'1008616','email'=>'375707@163.com'])->find();
+   // dump($admin);
+         
+         //如果要查询多个数据,可以使用模型的all方法
+       
+         //$admin = Admin::all();
+         //$admin = Admin::all(['userid'=>17]);
+       // $admin = Admin::where('userid','<=',17)->select();
+        // foreach ($admin as $v)
+        // {
+          //   echo '用户id:'.$v->userid;
+           //  echo '姓名：'.$v->username;
+           //  echo '<br/>';
+        // }
+         
+         
+       //对于数据库查询出来的数据更新数据
+       
+         $admin =Admin::get(17);
+         $admin->mobile ='1352225885';
+         $admin->email  ='111@qq.com';
+         if (false !==$admin->save()) //$user->isUpdate(false)->save()
+             return '更新用户成功';
+         else
+             return $admin->getError();
+             
+         
+         
+         
+    }  
 }
