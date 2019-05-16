@@ -125,15 +125,30 @@ class Index extends Controller
          
        //对于数据库查询出来的数据更新数据
        
-         $admin =Admin::get(17);
-         $admin->mobile ='1352225885';
-         $admin->email  ='111@qq.com';
-         if (false !==$admin->save()) //$user->isUpdate(false)->save()
-             return '更新用户成功';
-         else
-             return $admin->getError();
-             
+        // $admin =Admin::get(17);
+        // $admin->mobile ='1352225811';
+        // $admin->email  ='111@qq.com';
          
+        // $admin ->userid =null;
+        // if (false !==$admin->isUpdate(false)->save()) //$user->isUpdate(false)->save()
+        //     return '更新用户成功';
+       //  else
+       //      return $admin->getError();
+         
+       
+        //自己定义是数据更新操作
+         //$admin['mobile'] = '123456789';
+        // $admin['email']='3757@qq.com';
+         //$admin['username']='敏敏是我';
+        // Admin::update($admin,['userid'=>19]);
+       //  echo "更新成功"; 
+         
+        //删除操作
+         //$admin =Admin::get(18);
+         //$admin->delete();
+         //echo '删除成功';
+     //或者使用
+         //Admin::destroy(18);
          
          
     }  
