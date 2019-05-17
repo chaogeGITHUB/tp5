@@ -150,6 +150,24 @@ class Index extends Controller
      //或者使用
          //Admin::destroy(18);
          
-         
-    }  
+    }
+    
+    public function test16(){
+           
+       //$list =Admin::scope('email','111@qq.com')->all();
+       //dump($list);   
+        $list = Admin::scope('email')
+       ->scope('username')
+    ->scope(function($query){
+        
+     $query->order('userid','desc');   
+        
+    })
+    ->all();
+  dump($list);
+           
+       }
+    
+    
+    
 }
