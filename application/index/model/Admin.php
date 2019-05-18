@@ -14,8 +14,17 @@ use think\Model;
       //status查询
       protected function scopeUsername($query){
           
-          $query->where('username',"敏敏特穆尔");
+          $query->where('username',"张无忌");
       }
+      
+      
+     //全局查询范围
+      protected static function base($query) //base 基础的、公共的
+     {
+       $query->where('userid',1);    
+          
+      }
+      
       
   }
 

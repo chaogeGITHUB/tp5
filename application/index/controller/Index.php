@@ -1,7 +1,4 @@
 <?php
-namespace app\index\controller;
-use think\Controller;
-use think\Db;
 use app\index\model\Admin;
 use think\Url;
 
@@ -154,17 +151,21 @@ class Index extends Controller
     
     public function test16(){
            
-       //$list =Admin::scope('email','111@qq.com')->all();
-       //dump($list);   
-        $list = Admin::scope('email')
-       ->scope('username')
-    ->scope(function($query){
+      
         
-     $query->order('userid','desc');   
-        
-    })
-    ->all();
-  dump($list);
+     
+       //查询范围1
+      //$list =Admin::scope('email','111@qq.com')->all();
+     //dump($list);   
+  
+        //查询范围2
+       //$list = Admin::scope('email')
+      //->scope('username')
+     //->scope(function($query){
+    // $query->order('userid','desc');   
+   //  })
+  // ->all();
+ // dump($list);
            
        }
     

@@ -39,6 +39,7 @@ use think\paginator\Collection as PaginatorCollection;
  */
 abstract class Model implements \JsonSerializable, \ArrayAccess
 {
+         protected $nickname;
     // 数据库对象池
     protected static $links = [];
     // 数据库配置
