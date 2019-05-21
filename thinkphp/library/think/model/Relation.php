@@ -17,7 +17,7 @@ use think\Loader;
 use think\Model;
 use think\model\Pivot;
 
-class Relation
+class Relation  //关系模型
 {
     const HAS_ONE          = 1;
     const HAS_MANY         = 2;
