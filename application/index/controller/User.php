@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 use app\index\model\Users;
+use app\index\model\Car;
 use app\index\model\Comment;
 use \think\Validate;
 use think\Controller;
@@ -169,13 +170,38 @@ class User extends Controller
 //        echo "所有的关联数据已删除";
         
         
+ }
+ 
+  public function test20()
+  {
+//      查询用户user_id为1的所拥有的汽车品牌
+//      $user = Users::get(1);
+//      echo "车品牌名：".$user->car->brand. " 车牌号: ".$user->car->plate_number."<br/>";
       
-   
+//      新增用户 关联 汽车
+     $user = new Users;
+     $user->email = 'zwj@163.com';
+     $user->nickname = 'zhang无忌';
+     $user->birthday = '1828-09-06';
+     if($user->save()){
+         $car['brand'] = '路虎';
+         $car['plate_number'] = '粤D888866';
+//         uid 不指定
+     $user->car()->save($car); //Relation对象，添加一部车  
+     return '用户[' . $user->nickname . ']新增成功';
+     }
+     else{
+     return $user->getError(); 
+         
+     }
+       
+         
+     }
+      
+      
+      
+      
+  }
     
-    
-    
-    
-    }  
-    
-}
+
 
