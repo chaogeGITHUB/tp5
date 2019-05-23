@@ -168,6 +168,14 @@ class Index extends Controller
  // dump($list);
            
        }
+       
+//    关联新增
+//    给某个地区增加编辑配送区域
+    public function test20()
+  {
+         
+        
+    }
     
     
     

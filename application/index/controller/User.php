@@ -172,6 +172,9 @@ class User extends Controller
         
  }
  
+ 
+//    ------一对一关联查询-----------
+ 
   public function test20()
   {
 //      查询用户user_id为1的所拥有的汽车品牌
@@ -179,23 +182,55 @@ class User extends Controller
 //      echo "车品牌名：".$user->car->brand. " 车牌号: ".$user->car->plate_number."<br/>";
       
 //      新增用户 关联 汽车
-     $user = new Users;
-     $user->email = 'zwj@163.com';
-     $user->nickname = 'zhang无忌';
-     $user->birthday = '1828-09-06';
-     if($user->save()){
-         $car['brand'] = '路虎';
-         $car['plate_number'] = '粤D888866';
+//     $user = new Users;
+//     $user->email = 'zwj@163.com';
+//     $user->nickname = 'zhang无忌';
+//     $user->birthday = '1828-09-06';
+//     if($user->save()){
+//         $car['brand'] = '路虎';
+//         $car['plate_number'] = '粤D888866';
 //         uid 不指定
-     $user->car()->save($car); //Relation对象，添加一部车  
-     return '用户[' . $user->nickname . ']新增成功';
-     }
-     else{
-     return $user->getError(); 
+//     $user->car()->save($car); //Relation对象，添加一部车  
+//     return '用户[' . $user->nickname . ']新增成功';
+//     }
+//     else{
+//     return $user->getError(); 
          
-     }
-       
-         
+//     }
+     
+//      关联查询
+//    $user = Users::get(11); //$user =User:;get(11,'car');
+//      echo $user->email . '<br/>';
+//      echo $user->nickname . '<br/>';
+//      echo $user->car->brand . '<br/>';
+//      echo $user->car->plate_number . '<br/>';
+      
+//       关联更新
+//      $user = Users::get(11);
+//       $user->email = 'lovezm@163.com';
+//       if($user->save()){
+           //更新关联数据
+//           $user->car->plate_number = '粤B666666';
+//           $user->car->save();
+//           return '用户[ ' . $user->email . ']更新成功';    
+//       }
+//       else{
+//           return $user->getError();     
+//       }
+      
+//      关联删除
+//      $user = Users::get(12);
+//      if($user->delete()){
+//          删除相关数据
+//          $user->car->delete();
+//          return '用户[ ' . $user->email . ']删除成功';
+//      }else{
+//          return $user->getError();          
+          
+//      }   
+      
+      
+      
      }
       
       
