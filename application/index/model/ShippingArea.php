@@ -1,6 +1,8 @@
 <?php
 namespace app\index\model;
 use think\Model;
+use app\index\model\Region ;
+
 class ShippingArea extends Model //配送区域表
 {
 //    配送区域划分

@@ -1,6 +1,10 @@
 <?php
+namespace app\index\controller;
 use app\index\model\Admin;
 use think\Url;
+use think\Controller;
+use app\index\model\Region;
+use app\index\model\ShippingArea;
 
 
 class Index extends Controller
@@ -172,8 +176,47 @@ class Index extends Controller
 //    关联新增
 //    给某个地区增加编辑配送区域
     public function test20()
-  {
-         
+  { 
+//       $region = Region::get('2'); //查询地区表中的地区
+      // var_dump($region);exit;
+       //新增配送区域并自动写入枢纽表
+//       $region->shippingArea()->save(['shipping_area_name'=>'一线城市']); //$region->shippingArea() 返回关联模型
+//       echo "插入成功";
+       
+      //给当前用户新增多个用户角色
+//       $region->shippingArea()->saveAll([
+//          ['shipping_area_name'=>'珠三角'],
+//          ['shipping_area_name'=>'全国一线城市']
+//        ]);
+//       return '配送区域新增成功';
+        
+          
+        
+//      给一个地区添加一个现有的配送区域
+        
+//        $region = Region::get(3);
+//        $shippingArea = ShippingArea::getByShippingAreaName("珠三角"); //查询有关“珠三角”的数据
+//        添加枢纽表数据
+//        $region->shippingArea()->attach($shippingArea); //使用attach方法增加中间表关联数据
+//        $region->shippingArea()->attach(3);
+//        return '新配送区域新增成功了';
+        
+
+
+//        给一个地区添加一个现有的配送区域
+//        $shippingArea = ShippingArea::get(5);
+//        $shippingArea->region()->attach(7);
+//        return '新配送区域新增成功';
+       
+//        关联删除
+      $region = Region::getByName('潮阳区');
+      $shippingArea = ShippingArea::get(5);
+    
+      //删除关联数据 但不删除关联数据模型
+      $region->shippingArea()->detach($shippingArea);
+     
+      return '删除成功';
+        
         
     }
     
